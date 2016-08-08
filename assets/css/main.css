@@ -3047,3 +3047,15 @@
 					}
 
 	}
+
+	@media (min-width: 1281px) {
+		.gallery-panel {
+			background-color: black;
+			width: 23%;
+			height: 484.5px;
+			display: inline-block;
+			margin-right: 1%;
+			background-position: center;
+			background-size: cover
+		}
+	}
