@@ -80,7 +80,7 @@ date_format:    "%A, %B %-d, %Y"
 							Built on <strong>skel</strong> and released under the <a href="http://html5up.net/license">CCA</a> license.
 						</p> -->
 					</header>
-					<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+					<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200, "fitWidth": true }'>
 						{% assign imgs = (site.static_files | sort: page.sort_by) %}
 						{% for img in imgs reversed %}
 						{% if img.path contains page.image_folder %}
