@@ -80,18 +80,18 @@ date_format:    "%A, %B %-d, %Y"
 							Built on <strong>skel</strong> and released under the <a href="http://html5up.net/license">CCA</a> license.
 						</p> -->
 					</header>
-					<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 200, "fitWidth": true }'>
+					<div class="grid">
 						{% assign imgs = (site.static_files | sort: page.sort_by) %}
 						{% for img in imgs reversed %}
-						{% if img.path contains page.image_folder %}
-						{% assign img_name = img.path | remove: page.image_folder | split: '.' | first %}
-						{% assign img_date = img.modified_time | date: page.date_format %}
-						<div class="grid-item">
-							<img src=".{{ img.path }}"
-						             alt="{{ img_name }}"
-						             style="max-width: {{ page.max_width }}"/>
-						</div>
-						{% endif %}
+							{% if img.path contains page.image_folder %}
+								{% assign img_name = img.path | remove: page.image_folder | split: '.' | first %}
+								{% assign img_date = img.modified_time | date: page.date_format %}
+								<div class="grid-item">
+									<img src=".{{ img.path }}"
+								             alt="{{ img_name }}"
+								             style="max-width: {{ page.max_width }}"/>
+								</div>
+							{% endif %}
 						{% endfor %}
 					</div>
 				</section>
@@ -409,7 +409,19 @@ date_format:    "%A, %B %-d, %Y"
 			<script src="assets/js/main.js"></script>
 <!-- 			<script src="assets/js/gallery.js"></script> -->
 			<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+			<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+			<script type="text/javascript">
+			var $grid = $('.grid').masonry({
+				"itemSelector": ".grid-item",
+				"columnWidth": 200,
+				"fitWidth": true
+			});
+
+			// layout Masonry after each image loads
+			$grid.imagesLoaded().progress(function() {
+				$grid.masonry('layout');
+			});
+			</script>
 
 	</body>
 </html>
-
