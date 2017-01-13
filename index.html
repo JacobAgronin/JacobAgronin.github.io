@@ -63,15 +63,14 @@ date_format:    "%A, %B %-d, %Y"
 					</p> -->
 				</header>
 				<div class="grid">
+					<div class="grid-sizer"></div>
 					{% assign imgs = (site.static_files | sort: page.sort_by) %}
 					{% for img in imgs reversed %}
 						{% if img.path contains page.image_folder %}
 							{% assign img_name = img.path | remove: page.image_folder | split: '.' | first %}
 							{% assign img_date = img.modified_time | date: page.date_format %}
 							<div class="grid-item">
-								<img src=".{{ img.path }}"
-							             alt="{{ img_name }}"
-							             style="max-width: {{ page.max_width }}"/>
+								<img src=".{{ img.path }}" alt="{{ img_name }}" />
 							</div>
 						{% endif %}
 					{% endfor %}
@@ -93,9 +92,9 @@ date_format:    "%A, %B %-d, %Y"
 			<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
 			<script type="text/javascript">
 			var $grid = $('.grid').masonry({
-				"itemSelector": ".grid-item",
-				"columnWidth": 200,
-				"fitWidth": true
+				itemSelector: '.grid-item',
+				percentPosition: true,
+				columnWidth: '.grid-sizer'
 			});
 
 			// layout Masonry after each image loads
